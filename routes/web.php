@@ -30,21 +30,28 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/about', function () {
-    return view('about', [
-        "title" => "About",
-        "name" => "M.Dio Geovani",
-        "email" => "mdio.geovani22@gmail.com",
-        'active' => 'about',
-        "image" => "dio.jpg"
-    ]);
-});
+// Route::get('/about', function () {
+//     return view('about', [
+//         "title" => "About",
+//         "name" => "M.Dio Geovani",
+//         "email" => "mdio.geovani22@gmail.com",
+//         'active' => 'about',
+//         "image" => "dio.jpg"
+//     ]);
+// });
 
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', function () {
+    return view('categories', [
+        'title' => 'Jobdesk',
+        'active' => 'categories',
+        'categories' => Category::all()
+    ]);
+});
+Route::get('/dashboard/category', function () {
     return view('categories', [
         'title' => 'Jobdesk',
         'active' => 'categories',
@@ -58,17 +65,24 @@ Route::get('/types', function () {
         'types' => Type::all()
     ]);
 });
+Route::get('/dashboard/type', function () {
+    return view('types', [
+        'title' => 'Types',
+        'active' => 'types',
+        'types' => Type::all()
+    ]);
+});
 
-
+// Login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
+// register
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-
-
+// Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware('auth');
@@ -78,9 +92,20 @@ Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'check
 
 Route::resource('/dashboard/posts', DashboardPostController::class)
     ->middleware('auth');
+Route::resource('/dashboard/post', PostController::class)
+    ->middleware('auth');
 
 
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
+
+//download pdf
+
+Route::get('cetaklaporan/{id}', [PostController::class, 'generatelaporan'])->name('generatelaporan');
+Route::get('card/{id}', [PDFController::class, 'generatecard'])->name('generatecard');
+Route::get('card', [PDFController::class, 'card'])->name('card');
+// Route::get('filepdf/{id} ', [PDFController::class, 'halpdf'])->name('halpdf');R
+Route::get('generate-pdf/{id} ', [PDFController::class, 'generatePDF'])->name('download');
+
 // Route::get('/dashboard/categories', [DashboardPostController::class])
 //     ->middleware('auth');
 

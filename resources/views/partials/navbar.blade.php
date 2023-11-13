@@ -6,6 +6,7 @@
 </style>
 
 
+
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
     
@@ -17,18 +18,18 @@
       <ul class="navbar-nav">
         {{-- <li class="nav-item">
           <a class="nav-link {{ ($active === "home") ? 'active' : ''}}" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ ($active === "about") ? 'active' : ''}}" href="/about">About</a>
         </li> --}}
         <li class="nav-item">
-          {{-- <a class="nav-link {{ ($active === "about") ? 'active' : ''}}" href="/about">About</a> --}}
+          <a class="nav-link {{ ($active === "posts") ? 'active' : ''}}" href="/posts">Aktivitas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($active === "posts") ? 'active' : ''}}" href="/posts">Activity</a>
+          <a class="nav-link {{ ($active === "category") ? 'active' : ''}}" href="/categories">Kerja</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($active === "category") ? 'active' : ''}}" href="/categories">Work</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ ($active === "types") ? 'active' : ''}}" href="/types">Type</a>
+          <a class="nav-link {{ ($active === "types") ? 'active' : ''}}" href="/types">Proses</a>
         </li>
       </ul>
 
@@ -41,7 +42,7 @@
              {{ auth()->user()->name }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/dashboard/posts"><i class="bi bi-layout-text-sidebar"></i> My Dashboard</a></li>
+            <li><a class="dropdown-item" href="/dashboard/posts"><i class="bi bi-layout-text-sidebar"></i>Laporan</a></li>
             <li><hr class="dropdown-divider"></li>
             <li>
 

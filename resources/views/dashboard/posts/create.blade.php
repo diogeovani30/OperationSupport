@@ -2,59 +2,61 @@
 
 
 @section('container')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Create New Report</h1>
-</div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Buat Laporan baru</h1>
+    </div>
 
-<div class="col-lg-8">
-<form method="post" action="/dashboard/posts" classs="mb-5" enctype="multipart/form-data">
-    @csrf
-  <div class="mb-3">
-    <label for="title" class="form-label ">Report</label>
-    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus value="{{ old('title') }}">
-    @error('title')
-      <div class="invalid-feedback">
-        {{ $message }}
-      </div> 
-    @enderror
-  </div>
-  <div class="mb-3">
-    <label for="slug" class="form-label">Slug</label>
-    <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required value="{{ old('slug') }}"><!-- disabled readonly -->
-    @error('slug')
-      <div class="invalid-feedback">
-        {{ $message }}
-      </div> 
-    @enderror
-  </div>
-  <div class="mb-3">
-    <label for="category" class="form-label">Work</label>
-    <select class="form-select" name="category_id">
-      @foreach ($categories as $category)       
-      @if(old('category_id') == $category->id)
-      <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-    @else
-      <option value="{{ $category->id }}" >{{ $category->name }}</option>
-    @endif
-      @endforeach
-    </select>
-  </div>
+    <div class="col-lg-8">
+        <form method="post" action="/dashboard/posts" classs="mb-5" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">
+                <label for="title" class="form-label ">Laporan</label>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                    name="title" required autofocus value="{{ old('title') }}">
+                @error('title')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="slug" class="form-label">Kata Kunci</label>
+                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
+                    required value="{{ old('slug') }}"><!-- disabled readonly -->
+                @error('slug')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Kerja</label>
+                <select class="form-select" name="category_id">
+                    @foreach ($categories as $category)
+                        @if (old('category_id') == $category->id)
+                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                        @else
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
 
-  <div class="mb-3">
-    <label for="type" class="form-label">Type</label>
-    <select class="form-select" name="type_id">
-      @foreach ($types as $type)       
-      @if(old('type_id') == $type->id)
-      <option value="{{ $type->id }}" selected>{{ $type->name }}</option>
-    @else
-      <option value="{{ $type->id }}" >{{ $type->name }}</option>
-    @endif
-      @endforeach
-    </select>
-  </div>
-  
+            <div class="mb-3">
+                <label for="type" class="form-label">Proses</label>
+                <select class="form-select" name="type_id">
+                    @foreach ($types as $type)
+                        @if (old('type_id') == $type->id)
+                            <option value="{{ $type->id }}" selected>{{ $type->name }}</option>
+                        @else
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
 
-  {{-- <div class="mb-3">
+
+            {{-- <div class="mb-3">
     <label for="image" class="form-label">Post Image</label>
     <img class="img-preview img-fluid mb-3 col-sm-5">
     <input class="form-control @error('image') is-invalid @enderror" 
@@ -65,44 +67,43 @@
       </div> 
     @enderror
   </div> --}}
-  
-  <div class="mb-3">
-    <label for="body" class="form-label">Notes</label>
-    @error('body')
-    <p class="text-danger">{{ $message }}</p>
-    @enderror
-    <input id="body" type="hidden" name="body" value="{{ old('body') }}">
-    <trix-editor input="body"></trix-editor>   
-  </div>
-  <button type="submit" class="btn btn-primary">Create Report</button>
-</form>
-</div>
+
+            <div class="mb-3">
+                <label for="body" class="form-label">Pesan</label>
+                @error('body')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+                <input id="body" type="hidden" name="body" value="{{ old('body') }}">
+                <trix-editor input="body"></trix-editor>
+            </div>
+            <button type="submit" class="btn btn-primary">Buat Laporan</button>
+        </form>
+    </div>
 
 
-<script>
-const title = document.querySelector('#title');
-const slug = document.querySelector('#slug');
+    <script>
+        const title = document.querySelector('#title');
+        const slug = document.querySelector('#slug');
 
-  title.addEventListener('change', function(){
-    fetch('/dashboard/posts/checkSlug?title=' + title.value)
-    .then(response => response.json())
-    .then(data => slug.value = data.slug)
-  });
+        title.addEventListener('change', function() {
+            fetch('/dashboard/posts/checkSlug?title=' + title.value)
+                .then(response => response.json())
+                .then(data => slug.value = data.slug)
+        });
 
-document.addEventListener('trix-file-accept', function(e){
-  e.preventDefault();
-})
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
 
-// function previewImage() {
-//       const image = document.querySelector('#image');
-//       const imgPreview = document.querySelector('.img-preview');
-//       imgPreview.style.display = 'block';
-//       const oFReader = new FileReader();
-//       oFReader.readAsDataURL(image.files[0]);
-//       oFReader.onload = function(oFREvent) {
-//         imgPreview.src = oFREvent.target.result;
-//       }
-//     }
-
-</script>
+        // function previewImage() {
+        //       const image = document.querySelector('#image');
+        //       const imgPreview = document.querySelector('.img-preview');
+        //       imgPreview.style.display = 'block';
+        //       const oFReader = new FileReader();
+        //       oFReader.readAsDataURL(image.files[0]);
+        //       oFReader.onload = function(oFREvent) {
+        //         imgPreview.src = oFREvent.target.result;
+        //       }
+        //     }
+    </script>
 @endsection

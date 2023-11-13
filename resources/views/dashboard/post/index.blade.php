@@ -1,8 +1,9 @@
 
 
-@extends('layouts.main')
+@extends('dashboard.layouts.main')
 
 @section('container')
+<h1>hello</h1>
     <h1 class="mb-3 text-center">{{ $title }}</h1>
 
 

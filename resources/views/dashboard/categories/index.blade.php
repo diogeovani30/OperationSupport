@@ -12,13 +12,13 @@
 @endif
 
               <div class="table-responsive col-lg-6">
-                      <a href="/dashboard/categories/create" class="btn btn-primary mb-3">Create new category</a>
+                      <a href="/dashboard/categories/create" class="btn btn-primary mb-3">Tambah PIC</a>
                       <table class="table table-striped table-sm">
                         <thead>
                           <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Work</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Kerja</th>
+                            <th scope="col">Aksi</th>
                           </tr>
                         </thead>
                         <tbody>

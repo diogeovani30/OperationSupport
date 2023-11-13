@@ -25,6 +25,7 @@ class DashboardPostController extends Controller
         ]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -57,13 +58,12 @@ class DashboardPostController extends Controller
         ]);
 
 
-
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
 
         Post::create($validatedData);
 
-        return redirect('/dashboard/posts')->with('success', 'New post has been added!');
+        return redirect('/dashboard/posts')->with('Berhasil', 'Laporan baru berhasil ditambahkan!');
     }
 
     /**
@@ -132,7 +132,7 @@ class DashboardPostController extends Controller
         Post::where('id', $post->id)
             ->update($validatedData);
 
-        return redirect('/dashboard/posts')->with('success', 'Post has been Edited!');
+        return redirect('/dashboard/posts')->with('success', 'Laporan berhasil di edit!');
     }
 
     /**
@@ -148,7 +148,7 @@ class DashboardPostController extends Controller
         }
         Post::destroy($post->id);
 
-        return redirect('/dashboard/posts')->with('success', 'Post Has been Deleted!');
+        return redirect('/dashboard/posts')->with('success', 'Laporan berhasil dihapus!');
     }
 
     public function checkSlug(Request $request)

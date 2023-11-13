@@ -23,7 +23,7 @@ class PostController extends Controller
         $title = '  ';
         if (request('type')) {
             $type = Type::firstWhere('slug', request('type'));
-            $title = ' Progres ' . $type->name;
+            $title = ' Proses ' . $type->name;
         }
         if (request('author')) {
             $author = User::firstWhere('username', request('author'));
@@ -31,19 +31,36 @@ class PostController extends Controller
         }
 
         return view('posts', [
-            "title" => " All Report" . $title,
+            "title" => "Laporan Aktivitas" . $title,
             "active" => "posts",
-            "posts" => Post::latest()->filter(request(['search', 'category', 'type', 'author']))->paginate(10)->withQueryString()
+            "posts" => Post::latest()->filter(request(['search', 'category', 'type', 'author']))->paginate(15)->withQueryString()
         ]);
     }
 
     public function show(Post $post)
     {
         return view('post', [
-            "title" => "Single Report",
+            "title" => "Laporan Detail",
             "active" => "posts",
             "post" => $post
 
         ]);
+    }
+
+    public function generatelaporan($id)
+    {
+        // Find the post by ID
+        $post = Post::find($id);
+        // dd($posts);
+
+        if (!$post) {
+            // Handle the case when the post with the given ID is not found
+            return redirect()->route('posts.index')->with('error', 'Post not found.');
+        }
+
+        $title = 'Cetak Laporan';
+
+        // Return the view with the post data
+        return view('user.cetaklaporan', compact('post', 'title'));
     }
 }

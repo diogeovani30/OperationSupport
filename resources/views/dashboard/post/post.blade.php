@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('dashboard.layouts.main')
 
 @section('container')
 
@@ -11,7 +11,12 @@
         in<a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none"> {{ $post->category->name }}</a>
         Proses<a href="/posts?type={{ $post->type->slug }}" class="text-decoration-none"> {{ $post->type->name }}</a>
       <a>{{ $post->created_at->diffForHumans () }}</a></p>
-    
+     
+      
+       
+        
+
+
         {{-- @if($post->image)
                     <div style="max-height:350px; overflow:hidden;">
                         <img src="{{ asset('storage/' . $post->image) }}" 
@@ -26,7 +31,9 @@
           {!! $post->body !!}
         </article>
     </div>
-  
+    
+   
+
 
       <a href="/posts" class="d-block mt-3">Kembali</a>
     </div>
