@@ -24,8 +24,6 @@ class DashboardPostController extends Controller
             'posts' => Post::where('user_id', auth()->user()->id)->get()
         ]);
     }
-
-
     /**
      * Show the form for creating a new resource.
      *

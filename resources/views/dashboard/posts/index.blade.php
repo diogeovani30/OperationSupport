@@ -35,8 +35,9 @@
                         <td>{{ $post->category->name }}</td>
                         <td>{{ $post->type->name }}</td>
                         <td>
-                            <a href="/dashboard/posts/{{ $post->slug }}" class="badge btn-info "><span
-                                    data-feather="eye"></span></a>
+                            <a href="/dashboard/posts/{{ $post->slug }}" class="badge btn-info ">
+                                <span data-feather="eye"></span>
+                            </a>
                             <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning"><span
                                     data-feather="edit"></span></a>
                             <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
@@ -49,7 +50,7 @@
 
                             <a class="badge btn-primary" href="{{ route('generatelaporan', ['id' => $post->id]) }}"
                                 target="_blank">
-                                <i class="fa fa-download"></i> Download
+                                <span data-feather="download"></span>
                             </a>
 
                         </td>

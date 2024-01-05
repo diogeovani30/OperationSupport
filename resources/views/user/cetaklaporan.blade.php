@@ -31,28 +31,23 @@
             <div class="page-header">
 
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">{{ $title }}</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="basic-datatables" class="display table table-hover">
-                                    <tbody>
-                                        <tr>
-                                            <td class="col-md-282 border">{{ $post->slug }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Laporan</h6>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="10%" cellspacing="0">
+                                <thead>
+                                    <p> {!! $post->body !!}</p>
+                                </thead>
                         </div>
                     </div>
                 </div>
+
+                </tbody>
+                </table>
             </div>
-        </div>
-    </div>
 </body>
 
 </html>

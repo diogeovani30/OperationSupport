@@ -30,18 +30,8 @@ Route::get('/', function () {
     ]);
 });
 
-// Route::get('/about', function () {
-//     return view('about', [
-//         "title" => "About",
-//         "name" => "M.Dio Geovani",
-//         "email" => "mdio.geovani22@gmail.com",
-//         'active' => 'about',
-//         "image" => "dio.jpg"
-//     ]);
-// });
-
-
 Route::get('/posts', [PostController::class, 'index']);
+// Route::get('/posts/{post:slug}', [PostController::class, 'ShowDetailLaporan']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', function () {
@@ -101,10 +91,11 @@ Route::resource('/dashboard/categories', AdminCategoryController::class)->except
 //download pdf
 
 Route::get('cetaklaporan/{id}', [PostController::class, 'generatelaporan'])->name('generatelaporan');
-Route::get('card/{id}', [PDFController::class, 'generatecard'])->name('generatecard');
-Route::get('card', [PDFController::class, 'card'])->name('card');
-// Route::get('filepdf/{id} ', [PDFController::class, 'halpdf'])->name('halpdf');R
-Route::get('generate-pdf/{id} ', [PDFController::class, 'generatePDF'])->name('download');
+
+// Route::get('card/{id}', [PDFController::class, 'generatecard'])->name('generatecard');
+// Route::get('card', [PDFController::class, 'card'])->name('card');
+// // Route::get('filepdf/{id} ', [PDFController::class, 'halpdf'])->name('halpdf');R
+// Route::get('generate-pdf/{id} ', [PDFController::class, 'generatePDF'])->name('download');
 
 // Route::get('/dashboard/categories', [DashboardPostController::class])
 //     ->middleware('auth');
